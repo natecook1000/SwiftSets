@@ -30,6 +30,11 @@ public struct Set<T: Hashable> : Equatable {
         return contents[element] ?? false
     }
 
+    /// `true` if the Set contains `element`, `false` otherwise.
+    public subscript(element: Element) -> Bool {
+        return contains(element)
+    }
+
     /// Add `newElements` to the Set.
     public mutating func add(newElements: Element...) {
         newElements.map { self.contents[$0] = true }
@@ -158,12 +163,13 @@ extension Set {
 // MARK: ExtensibleCollectionType
 
 extension Set : ExtensibleCollectionType {
-    typealias Index = Int
-    public var startIndex: Int { return 0 }
-    public var endIndex: Int { return self.count }
+    typealias Index = SetIndex<T>
+    public var startIndex: Index { return SetIndex(contents.startIndex) }
+    public var endIndex: Index { return SetIndex(contents.endIndex) }
 
-    public subscript(i: Int) -> Element {
-        return Array(self.contents.keys)[i]
+    /// Returns the element of the Set at the specified index.
+    public subscript(i: Index) -> Element {
+        return contents.keys[i.index]
     }
 
     public mutating func reserveCapacity(n: Int) {
@@ -209,4 +215,23 @@ public func +<T>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
 
 public func ==<T>(lhs: Set<T>, rhs: Set<T>) -> Bool {
     return lhs.isEqualToSet(rhs)
+}
+
+// MARK: - SetIndex
+
+public struct SetIndex<T: Hashable> : BidirectionalIndexType {
+    private var index: DictionaryIndex<T, Bool>
+    private init(_ dictionaryIndex: DictionaryIndex<T, Bool>) {
+        self.index = dictionaryIndex
+    }
+    public func predecessor() -> SetIndex<T> {
+        return SetIndex(self.index.predecessor())
+    }
+    public func successor() -> SetIndex<T> {
+        return SetIndex(self.index.successor())
+    }
+}
+
+public func ==<T: Hashable>(lhs: SetIndex<T>, rhs: SetIndex<T>) -> Bool {
+    return lhs.index == rhs.index
 }
