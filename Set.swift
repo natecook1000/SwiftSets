@@ -64,11 +64,14 @@ public struct Set<T: Hashable> : Equatable {
 // MARK: SequenceType
 
 extension Set : SequenceType {
-    typealias Generator = MapSequenceGenerator<DictionaryGenerator<T, Bool>, T>
+    typealias Generator = GeneratorOf<T>
 
     /// Creates a generator for the items of the set.
     public func generate() -> Generator {
-        return contents.keys.generate()
+        var generator = contents.keys.generate()
+        return Swift.GeneratorOf {
+            return generator.next()
+        }
     }
 }
 
