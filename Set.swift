@@ -35,9 +35,16 @@ public struct Set<T: Hashable> : Equatable {
         return contains(element)
     }
 
-    /// Add `newElements` to the Set.
-    public mutating func add(newElements: Element...) {
-        newElements.map { self.contents[$0] = true }
+    /// Add a single `newElement` to the Set.
+    public mutating func add(newElement: Element) {
+        self.contents[newElement] = true
+    }
+    
+    /// Add multiple `newElements` to the Set.
+    public mutating func add(newElement: Element, _ anotherNewElement: Element, _ otherNewElements: Element...) {
+        add(newElement)
+        add(anotherNewElement)
+        otherNewElements.map { self.contents[$0] = true }
     }
 
     /// Remove `element` from the Set.
@@ -83,8 +90,8 @@ extension Set : SequenceType {
 // MARK: ArrayLiteralConvertible
 
 extension Set : ArrayLiteralConvertible {
-    public static func convertFromArrayLiteral(elements: T...) -> Set<T> {
-        return Set(elements)
+    public init(arrayLiteral elements: Element...) {
+        self.init(elements)
     }
 }
 
