@@ -7,13 +7,20 @@ public struct Set<T: Hashable> : Equatable {
     typealias Element = T
     private var contents: [Element: Bool]
 
+    // Create an empty Set.
     public init() {
-        self.contents = [Element: Bool]()
+        self.contents = [:]
     }
 
+    // Create a Set from the given sequence.
     public init<S: SequenceType where S.Generator.Element == Element>(_ sequence: S) {
-        self.contents = [Element: Bool]()
+        self.contents = [:]
         Swift.map(sequence) { self.contents[$0] = true }
+    }
+
+    // Create an empty Set while reserving capacity for at least `minimumCapacity` elements.
+    public init(minimumCapacity: Int) {
+        self.contents = Dictionary(minimumCapacity: minimumCapacity)    
     }
 
     /// The number of elements in the Set.
