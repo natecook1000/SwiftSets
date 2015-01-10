@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Set<T: Hashable> : Equatable {
+public struct Set<T: Hashable> : Equatable, ArrayLiteralConvertible {
     typealias Element = T
     private var contents: [Element: Bool]
 
@@ -64,6 +64,10 @@ public struct Set<T: Hashable> : Equatable {
     public func reduce<U>(var initial: U, combine: (U, T) -> U) -> U {
         return Swift.reduce(self, initial, combine)
     }
+    
+    public init(arrayLiteral elements: Element...) {
+        self.init(elements)
+    }
 }
 
 // MARK: SequenceType
@@ -77,14 +81,6 @@ extension Set : SequenceType {
         return Swift.GeneratorOf {
             return generator.next()
         }
-    }
-}
-
-// MARK: ArrayLiteralConvertible
-
-extension Set : ArrayLiteralConvertible {
-    public static func convertFromArrayLiteral(elements: T...) -> Set<T> {
-        return Set(elements)
     }
 }
 
