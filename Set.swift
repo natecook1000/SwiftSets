@@ -65,6 +65,9 @@ public struct Set<T: Hashable> : Equatable, ArrayLiteralConvertible {
         return Swift.reduce(self, initial, combine)
     }
     
+    /// Returns an element from the set, likely the first.
+    public func anyObject() -> Element? { return elements.first }
+    
     public init(arrayLiteral elements: Element...) {
         self.init(elements)
     }
