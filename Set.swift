@@ -86,10 +86,6 @@ public struct Set<T: Hashable> : Equatable, ArrayLiteralConvertible {
     
     /// Returns an element from the set, likely the first.
     public func anyObject() -> Element? { return elements.first }
-    
-    public init(arrayLiteral elements: Element...) {
-        self.init(elements)
-    }
 }
 
 // MARK: SequenceType

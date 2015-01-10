@@ -7,8 +7,8 @@ import XCTest
 // MARK: - Tests
 class SetTests : XCTestCase {
     func testOriginalTests() {
-        let vowelSet = Set(objects: "a","e","i","o","u")
-        let alphabetSet = Set(objects: "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
+        let vowelSet = Set("aeiou")
+        let alphabetSet : Set<Character> = Set(objects: "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
         let emptySet = Set<Int>()
         
         XCTAssert(vowelSet.isSubsetOfSet(alphabetSet) == true)
