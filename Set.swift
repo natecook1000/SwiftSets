@@ -15,6 +15,11 @@ public struct Set<T: Hashable> : Equatable, ArrayLiteralConvertible {
         self.contents = [Element: Bool]()
         Swift.map(sequence) { self.contents[$0] = true }
     }
+    
+    public init(objects: Element...) {
+        self.init()
+        objects.map { self.contents[$0] = true }
+    }
 
     /// The number of elements in the Set.
     public var count: Int { return contents.count }
@@ -109,6 +114,7 @@ extension Set {
     public func isSubsetOfSet(set: Set<T>) -> Bool {
         for elem in self {
             if !set.contains(elem) {
+                NSLog("\(elem)")
                 return false
             }
         }
