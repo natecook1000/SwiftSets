@@ -7,18 +7,25 @@ public struct Set<T: Hashable> : Equatable, ArrayLiteralConvertible {
     typealias Element = T
     private var contents: [Element: Bool]
 
+    // Create an empty Set.
     public init() {
-        self.contents = [Element: Bool]()
+        self.contents = [:]
     }
 
+    // Create a Set from the given sequence.
     public init<S: SequenceType where S.Generator.Element == Element>(_ sequence: S) {
-        self.contents = [Element: Bool]()
+        self.contents = [:]
         Swift.map(sequence) { self.contents[$0] = true }
     }
     
     public init(objects: Element...) {
         self.init()
         objects.map { self.contents[$0] = true }
+    }
+
+    // Create an empty Set while reserving capacity for at least `minimumCapacity` elements.
+    public init(minimumCapacity: Int) {
+        self.contents = Dictionary(minimumCapacity: minimumCapacity)    
     }
 
     /// The number of elements in the Set.
@@ -40,9 +47,16 @@ public struct Set<T: Hashable> : Equatable, ArrayLiteralConvertible {
         return contains(element)
     }
 
-    /// Add `newElements` to the Set.
-    public mutating func add(newElements: Element...) {
-        newElements.map { self.contents[$0] = true }
+    /// Add a single `newElement` to the Set.
+    public mutating func add(newElement: Element) {
+        self.contents[newElement] = true
+    }
+    
+    /// Add multiple `newElements` to the Set.
+    public mutating func add(newElement: Element, _ anotherNewElement: Element, _ otherNewElements: Element...) {
+        add(newElement)
+        add(anotherNewElement)
+        otherNewElements.map { self.contents[$0] = true }
     }
 
     /// Remove `element` from the Set.
@@ -92,6 +106,14 @@ extension Set : SequenceType {
     }
 }
 
+// MARK: ArrayLiteralConvertible
+
+extension Set : ArrayLiteralConvertible {
+    public init(arrayLiteral elements: Element...) {
+        self.init(elements)
+    }
+}
+
 // MARK: Set Operations
 
 extension Set {
@@ -114,7 +136,6 @@ extension Set {
     public func isSubsetOfSet(set: Set<T>) -> Bool {
         for elem in self {
             if !set.contains(elem) {
-                NSLog("\(elem)")
                 return false
             }
         }
