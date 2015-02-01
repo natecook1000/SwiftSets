@@ -8,7 +8,7 @@ import XCTest
 class SetTests : XCTestCase {
     func testOriginalTests() {
         let vowelSet = Set("aeiou")
-        let alphabetSet : Set<Character> = Set(objects: "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
+        let alphabetSet : Set<Character> = Set(elements: "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
         let emptySet = Set<Int>()
         
         XCTAssert(vowelSet.isSubsetOfSet(alphabetSet) == true)
@@ -23,7 +23,7 @@ class SetTests : XCTestCase {
         XCTAssert(mutableVowelSet.count == 5)
         mutableVowelSet += "y"
         XCTAssert(mutableVowelSet.count == 6)
-        mutableVowelSet += Set(objects: "å","á","â","ä","à","é","ê","è","ë","í","î","ï","ì","ø","ó","ô","ö","ò","ú","û","ü","ù")
+        mutableVowelSet += Set(elements: "å","á","â","ä","à","é","ê","è","ë","í","î","ï","ì","ø","ó","ô","ö","ò","ú","û","ü","ù")
         
         XCTAssert(mutableVowelSet.intersectsWithSet(alphabetSet) == true)
         XCTAssert(mutableVowelSet.isSubsetOfSet(alphabetSet) == false)
@@ -140,9 +140,9 @@ class SetTests : XCTestCase {
     }
     func testAnyObject() {
         var emptySet : Set<String> = Set<String>()
-        XCTAssert(emptySet.anyObject() == nil)
+        XCTAssert(emptySet.anyElement() == nil)
         emptySet += "a"
-        XCTAssert(emptySet.anyObject() == "a")
+        XCTAssert(emptySet.anyElement() == "a")
     }
 }
 
