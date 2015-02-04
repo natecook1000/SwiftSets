@@ -17,6 +17,11 @@ public struct Set<T: Hashable> : Equatable {
         self.contents = [:]
         Swift.map(sequence) { self.contents[$0] = true }
     }
+    
+    public init(elements: Element...) {
+        self.init()
+        elements.map { self.contents[$0] = true }
+    }
 
     // Create an empty Set while reserving capacity for at least `minimumCapacity` elements.
     public init(minimumCapacity: Int) {
@@ -78,6 +83,9 @@ public struct Set<T: Hashable> : Equatable {
     public func reduce<U>(var initial: U, combine: (U, T) -> U) -> U {
         return Swift.reduce(self, initial, combine)
     }
+    
+    /// Returns an element from the set, likely the first.
+    public func anyElement() -> Element? { return elements.first }
 }
 
 // MARK: SequenceType
