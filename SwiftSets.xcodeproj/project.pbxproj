@@ -85,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				434B89971A8351D3003E859F /* Set.swift */,
-				434B89601A835000003E859F /* SwiftSets.h */,
 				434B895E1A835000003E859F /* Supporting Files */,
 			);
 			path = SwiftSets;
@@ -94,6 +93,7 @@
 		434B895E1A835000003E859F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				434B89601A835000003E859F /* SwiftSets.h */,
 				434B895F1A835000003E859F /* Info.plist */,
 			);
 			name = "Supporting Files";
