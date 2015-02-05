@@ -1,6 +1,10 @@
-*.o
-*.dylib
-*.swiftdoc
-*.swiftmodule
-SetTests
+# Xcode
+build/
+*.pbxuser
+!default.pbxuser
+xcuserdata
+*.xccheckout
+DerivedData
+*.ipa
+*.xcuserstate
 
