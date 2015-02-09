@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		434B89611A835000003E859F /* SwiftSets.h in Headers */ = {isa = PBXBuildFile; fileRef = 434B89601A835000003E859F /* SwiftSets.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		434B89671A835000003E859F /* SwiftSets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434B895B1A835000003E859F /* SwiftSets.framework */; };
 		434B89961A8351A6003E859F /* SetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B89951A8351A6003E859F /* SetTests.swift */; };
 		434B89981A8351D3003E859F /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B89971A8351D3003E859F /* Set.swift */; };
 		434B89991A8351D3003E859F /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B89971A8351D3003E859F /* Set.swift */; };
 		434B899A1A8351D3003E859F /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B89971A8351D3003E859F /* Set.swift */; };
+		43AF80D91A887764002358A9 /* SwiftSets.h in Headers */ = {isa = PBXBuildFile; fileRef = 434B89601A835000003E859F /* SwiftSets.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +48,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				434B89671A835000003E859F /* SwiftSets.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +130,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43AF80D91A887764002358A9 /* SwiftSets.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +326,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -366,7 +366,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -449,7 +449,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "SwiftSets OS X/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftSets/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -469,7 +469,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "SwiftSets OS X/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftSets/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
